@@ -20,7 +20,7 @@
         "volume_size": 20
       }
     ],
-    "ami_name": "stdenv-sample-{{isotime | clean_ami_name}}",
+    "ami_name": "stdenv-docker-registry-{{isotime | clean_ami_name}}",
     "ami_groups": "all"
   }],
  "provisioners": [{
@@ -36,9 +36,11 @@
       "sudo docker run -d -p 5000:5000 registry",
       "git clone https://github.com/tkcmada/stdenv_docker2.git",
       "cd stdenv_docker2/stdenv_tools",
-      "sudo docker build -t stdenv_tools .",
-      "sudo docker tag stdenv_tools localhost:5000/stdenv_tools",
-      "sudo docker push localhost:5000/stdenv_tools"
+      "sudo sh build_tag_push.sh stdenv_tools",
+      "sudo sh build_tag_push.sh stdenv_tools_java",
+      "sudo sh build_tag_push.sh hadoop",
+      "sudo sh build_tag_push.sh kubernetes",
+      "sudo sh build_tag_push.sh sample_node"
     ]
   }]
 }
