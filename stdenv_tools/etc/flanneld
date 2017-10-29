@@ -1,0 +1,3 @@
+FLANNEL_ETCD="http://localhost:2379"
+FLANNEL_ETCD_KEY="/flannel/network"
+FLANNEL_OPTIONS="eth0"

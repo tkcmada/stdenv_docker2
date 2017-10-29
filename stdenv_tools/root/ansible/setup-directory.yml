@@ -1,0 +1,21 @@
+- hosts: localhost
+  connection: local
+  tasks:
+    - name: "Setup Directory"
+      file:
+        path={{item.path}}
+        state=directory
+      with_items:
+        - path: production
+        - path: staging
+        - path: group_vars/group1
+        - path: host_vars/group1
+        - path: library/
+        - path: filter_plugins/
+        - path: roles/common/tasks/
+        - path: roles/common/handlers/
+        - path: roles/common/templates/
+        - path: roles/common/files/
+        - path: roles/common/vars/
+        - path: roles/common/defaults/
+        - path: roles/common/meta/
