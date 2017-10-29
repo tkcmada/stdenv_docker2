@@ -34,8 +34,8 @@
       "cd /home/ec2-user",
       "sudo docker pull registry",
       "sudo docker run -d -p 5000:5000 registry",
-      "git clone https://github.com/tkcmada/stdenv_docker.git",
-      "cd stdenv_docker/stdenv_tools",
+      "git clone https://github.com/tkcmada/stdenv_docker2.git",
+      "cd stdenv_docker2/stdenv_tools",
       "sudo docker build -t stdenv_tools .",
       "sudo docker tag stdenv_tools localhost:5000/stdenv_tools",
       "sudo docker push localhost:5000/stdenv_tools"
