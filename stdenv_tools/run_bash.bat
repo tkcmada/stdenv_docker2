@@ -6,5 +6,5 @@ docker run ^
   -e AWS_DEFAULT_REGION=ap-northeast-1 ^
   -e AWS_DEFAULT_OUTPUT=json ^
   -e TZ=Asia/Tokyo ^
-  -it --privileged -v %~dp0vol:/volume stdenv_tools:latest /bin/bash
+  -it --privileged stdenv_tools:latest /bin/bash
 pause
