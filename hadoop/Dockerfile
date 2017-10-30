@@ -21,6 +21,14 @@ RUN ssh-keygen -t rsa -q -P "" -f /root/.ssh/id_rsa
 RUN cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys
 RUN systemctl enable sshd.service
 
-EXPOSE 22
+#installing hive
+RUN cd /usr \
+ && wget http://ftp.jaist.ac.jp/pub/apache/hive/stable-2/apache-hive-2.1.1-bin.tar.gz \
+ && tar zxvf apache-hive*.tar.gz \
+ && rm -f apache-hive*.tar.gz \
+ && ln -s apache-hive-2.1.1-bin apache-hive \
+ && echo "export HIVE_HOME=/usr/apache-hive" >> /root/.bashrc \
+ && echo 'export PATH=$HIVE_HOME/bin:$PATH' >> /root/.bashrc
+
 CMD ["bash"]
 

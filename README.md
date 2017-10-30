@@ -56,3 +56,7 @@ docker run -d -p 5000:5000 registry
 docker pull localhost:5000/stdenv_tools
 docker run -it localhost:5000/stdenv_tools /bin/bash
 ```
+
+# How to run Hadoop in docker ?
+
+[hadoop README.md](hadoop/README.md)
