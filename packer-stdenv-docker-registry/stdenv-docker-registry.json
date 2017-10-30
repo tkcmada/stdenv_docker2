@@ -14,6 +14,12 @@
     "ssh_username": "ec2-user",
     "ssh_timeout": "5m",
     "user_data_file" : "startup.sh",
+    "launch_block_device_mappings": [
+      {
+        "device_name": "/dev/xvda",
+        "volume_size": 20
+      }
+    ],
     "ami_name": "stdenv-docker-registry-{{isotime | clean_ami_name}}",
     "ami_groups": "all"
   }],
@@ -27,14 +33,10 @@
       "sudo docker info",
       "cd /home/ec2-user",
       "sudo docker pull registry",
-      "sudo docker run -d -p 5000:5000 registry",
+      "sudo docker run -d -v /opt/registry:/var/lib/registry -p 5000:5000 registry",
       "git clone https://github.com/tkcmada/stdenv_docker2.git",
       "cd stdenv_docker2",
-      "sudo sh build_tag_push.sh stdenv_tools",
-      "sudo sh build_tag_push.sh stdenv_tools_java",
-      "sudo sh build_tag_push.sh hadoop",
-      "sudo sh build_tag_push.sh kubernetes",
-      "sudo sh build_tag_push.sh sample_node"
+      "sudo sh build_tag_push.sh stdenv_alpine"
     ]
   }]
 }
