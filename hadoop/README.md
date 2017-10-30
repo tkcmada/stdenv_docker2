@@ -67,6 +67,8 @@ default
 
 hive> create database testdb;
 OK
+hive> use testdb;
+OK
 hive> create table orders(order_id string, qty int) row format delimited fields terminated by ',';
 OK
 hive> desc orders;
@@ -133,3 +135,47 @@ ord110
 ord220
 ord330
 ```
+
+How to run Spark example ?
+--------------------------
+
+- count local file
+
+```
+$ cd /root
+$ spark-shell
+
+Spark context available as 'sc' (master = local[*], app id = local-1509323981901).
+Spark session available as 'spark'.
+
+scala> val f = sc.textFile("orders.csv")
+f: org.apache.spark.rdd.RDD[String] = orders.csv MapPartitionsRDD[1] at textFile at <console>:24
+
+scala> f.count()
+res0: Long = 3
+```
+
+- count file on HDFS
+```
+$ hadoop fs -ls -R /
+drwxr-xr-x   - root supergroup          0 2017-10-30 00:11 /output
+-rwxr-xr-x   1 root supergroup         24 2017-10-30 00:11 /output/000000_0
+drwxrwxr-x   - root supergroup          0 2017-10-30 00:03 /tmp
+drwx-wx-wx   - root supergroup          0 2017-10-30 00:03 /tmp/hive
+drwx------   - root supergroup          0 2017-10-30 00:12 /tmp/hive/root
+drwxr-xr-x   - root supergroup          0 2017-10-29 23:59 /user
+drwxr-xr-x   - root supergroup          0 2017-10-29 23:59 /user/hive
+drwxrwxr-x   - root supergroup          0 2017-10-30 00:06 /user/hive/warehouse
+drwxrwxr-x   - root supergroup          0 2017-10-30 00:10 /user/hive/warehouse/orders
+-rwxrwxr-x   1 root supergroup         24 2017-10-30 00:10 /user/hive/warehouse/orders/orders.csv
+drwxrwxr-x   - root supergroup          0 2017-10-30 00:05 /user/hive/warehouse/testdb.db
+
+$ spark-shell
+
+scala> val hf = sc.textFile("hdfs://127.0.0.1:9000/output/000000_0")
+hf: org.apache.spark.rdd.RDD[String] = hdfs://127.0.0.1:9000/output/000000_0 MapPartitionsRDD[3] at textFile at <console>:24
+
+scala> hf.count()
+res1: Long = 3
+```
+

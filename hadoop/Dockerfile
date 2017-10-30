@@ -30,5 +30,23 @@ RUN cd /usr \
  && echo "export HIVE_HOME=/usr/apache-hive" >> /root/.bashrc \
  && echo 'export PATH=$HIVE_HOME/bin:$PATH' >> /root/.bashrc
 
+#installing scala
+RUN cd /usr \
+ && wget http://www.scala-lang.org/files/archive/scala-2.12.4.tgz \
+ && tar zxvf scala*.tgz \
+ && rm -f scala*.tgz \
+ && ln -s scala-* scala \
+ && echo "export SCALA_HOME=/usr/scala" >> /root/.bashrc \
+ && echo 'export PATH=$SCALA_HOME/bin:$PATH' >> /root/.bashrc
+
+#installing spark
+RUN cd /usr \
+ && wget http://ftp.jaist.ac.jp/pub/apache/spark/spark-2.2.0/spark-2.2.0-bin-hadoop2.7.tgz \
+ && tar zxvf spark*.tgz \
+ && rm -f spark*.tgz \
+ && ln -s spark* spark \
+ && echo "export SPARK_HOME=/usr/spark" >> /root/.bashrc \
+ && echo 'export PATH=$SPARK_HOME/bin:$PATH' >> /root/.bashrc
+
 CMD ["bash"]
 
