@@ -28,9 +28,10 @@ Drag and drop stdenv_tools folder onto "stdenv_docker2/build.bat"
 
 # How to build dcker registry AMI containing docker images
 
-1. add your dirname of Dockerfile to packer-stdenv-docker-registry\stdenv-docker-registry.json
+0. clone stdenv_packer (sibiling repository of this stdenv_docker2)
+1. add your dirname of Dockerfile to stdenv_packer/stdenv-docker-registry/stdenv-docker-registry.json
 2. set AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY envvar of your AWS IAM user. The user needs to have EC2 instance permission.
-2. run "packer-stdenv-docker-registry\packer_build.bat"
+2. run "stdenv_packer/stdenv-docker-registry/packer_build.bat"
 
 What happens inside packer_build.bat ?
 
@@ -40,7 +41,6 @@ What happens inside packer_build.bat ?
 3. docker build follwoing Dockerfile
 4. push docker image to registry
 5. create AMI containing docker registry.
-
 
 # How to run docker registry
 
