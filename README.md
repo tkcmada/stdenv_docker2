@@ -47,14 +47,14 @@ What happens inside packer_build.bat ?
 1. find stdenv-docker-registry AMI and run it on AWS EC2.
 2. login to the EC2 instance
 ```
-docker run -d -p 5000:5000 registry
+docker run -it -p 8000:5000 registry
 ```
 
 # How to pull docker image from local repository
 
 ```
-docker pull localhost:5000/stdenv_tools
-docker run -it localhost:5000/stdenv_tools /bin/bash
+docker pull localhost:8000/stdenv_tools
+docker run -it localhost:8000/stdenv_tools /bin/bash
 ```
 
 # How to run Hadoop in docker ?
