@@ -179,3 +179,28 @@ scala> hf.count()
 res1: Long = 3
 ```
 
+- Spark SQL
+```
+$ spark-shell
+
+scala> val sqlc = new org.apache.spark.sql.SQLContext(sc)
+
+scala> val df = sqlc.read.format("com.databricks.spark.csv").option("header","false").load("orders.csv")
+df: org.apache.spark.sql.DataFrame = [_c0: string, _c1: string]
+
+scala> df.registerTempTable("orders_tbl")
+
+scala> val df2 = sqlc.sql("SELECT * FROM orders_tbl")
+df2: org.apache.spark.sql.DataFrame = [_c0: string, _c1: string]
+
+scala> df2.show()
++----+---+
+| _c0|_c1|
++----+---+
+|ord1| 10|
+|ord2| 20|
+|ord3| 33|
++----+---+
+
+```
+
