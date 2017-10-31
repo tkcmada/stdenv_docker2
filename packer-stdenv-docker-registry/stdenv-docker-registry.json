@@ -20,7 +20,7 @@
         "volume_size": 20
       }
     ],
-    "ami_name": "test-stdenv-docker-registry-{{isotime | clean_ami_name}}",
+    "ami_name": "stdenv-docker-registry-{{isotime | clean_ami_name}}",
     "ami_groups": "all"
   }],
  "provisioners": [
