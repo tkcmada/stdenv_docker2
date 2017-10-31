@@ -204,3 +204,14 @@ scala> df2.show()
 
 ```
 
+How to use Zeppelin ?
+---------------------
+
+0. kick_service.bat
+1. run_bash_on_service.bat
+2. start Hadoop(start-dfs.sh)
+3. start Zeppelin
+```
+$ zeppelin-daemon.sh start
+```
+4. open "localhost:8080" in your browser on localhost machine
