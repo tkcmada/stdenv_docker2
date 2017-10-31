@@ -1,0 +1,1 @@
+FROM cloudera/quickstart
