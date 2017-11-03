@@ -6,6 +6,7 @@ this project is for managing dockerfile by docker registry
 
 1. (Windows10) install Docker for Windows
 2. set PATH to Docker command
+3. run "load_rhel7.4.bat" to load rhel7.4 image as tag rhel7.4
 
 # Directory structure
 
