@@ -20,17 +20,15 @@ stdenv_docker2
 
 # How to build docker image
 
+run the following command in each directory containing Dockerfile.
 ```
-stdenv_tools $ docker build -t stdenv_tools .
+stdenv_tools $ build.bat
 ```
-or
-
-Drag and drop stdenv_tools folder onto "stdenv_docker2/build.bat"
 
 # How to build dcker registry AMI containing docker images
 
 0. clone stdenv_packer (sibiling repository of this stdenv_docker2)
-1. add your dirname of Dockerfile to stdenv_packer/stdenv-docker-registry/stdenv-docker-registry.json
+1. add your dirname containing Dockerfile to stdenv_packer/stdenv-docker-registry/stdenv-docker-registry.json
 2. set AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY envvar of your AWS IAM user. The user needs to have EC2 instance permission.
 2. run "stdenv_packer/stdenv-docker-registry/packer_build.bat"
 
