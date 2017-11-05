@@ -18,42 +18,26 @@ stdenv_docker2
     + Dockerfile
 ```
 
-# How to build docker image
+# How to build and run docker image
 
-run the following command in each directory containing Dockerfile.
 ```
 stdenv_tools $ build.bat
+# this build docker container and tag it as "stdenv_tools"
+
+stdenv_tools $ docker run -it stdenv_tools bash
 ```
 
-# How to build dcker registry AMI containing docker images
+# How to push docker image to registry.
 
-0. clone stdenv_packer (sibiling repository of this stdenv_docker2)
-1. add your dirname containing Dockerfile to stdenv_packer/stdenv-docker-registry/stdenv-docker-registry.json
-2. set AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY envvar of your AWS IAM user. The user needs to have EC2 instance permission.
-2. run "stdenv_packer/stdenv-docker-registry/packer_build.bat"
+1. run push.bat to push image ( IP of our registry is written in stdenv_docker2/setenv.bat )
 
-What happens inside packer_build.bat ?
+# Error "Get https://54.250.240.42:8000/v2/: http: server gave HTTP response to HTTPS client" while docker push
 
-1. Launch AWS EC2 instance and ssh login it.
-2. git clone stdenv_docker2
-3. start docker registry
-3. docker build follwoing Dockerfile
-4. push docker image to registry
-5. create AMI containing docker registry.
-
-# How to run docker registry
-
-1. find stdenv-docker-registry AMI and run it on AWS EC2.
-2. login to the EC2 instance
-```
-docker run -it -p 8000:5000 registry
-```
-
-# How to pull docker image from local repository
-
-```
-docker pull localhost:8000/stdenv_tools
-docker run -it localhost:8000/stdenv_tools /bin/bash
+add the following to %USERPROFILE%/.docker/daemon.json
+```json
+  "insecure-registries": [
+    "54.250.240.42:8000"
+  ],
 ```
 
 # How to run Hadoop in docker ?

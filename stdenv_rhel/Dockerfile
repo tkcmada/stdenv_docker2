@@ -9,7 +9,11 @@ COPY subscription-enable-repo.sh /root/
 COPY subscription-find-pool.py /root/
 
 RUN cd /root && sh subscription-enable-repo.sh rhel-7-server-extras-rpms rhel-7-server-optional-rpms
- 
+#subscriptionのキャッシュを有効にするためにこれ以前に追加しないこと
+
+#epelを使用する
+RUN rpm -ivh http://ftp.jaist.ac.jp/pub/Linux/Fedora/epel/7/x86_64/Packages/e/epel-release-7-11.noarch.rpm
+
 RUN yum install -y \
      git \
      ansible \
