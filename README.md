@@ -1,6 +1,10 @@
 # stdenv_docker2
 
-this project is for managing dockerfile by docker registry
+this project is for managing dockerfile by docker registry.
+
+# Links
+
+- [stdenv_hadoop README.md](stdenv_hadoop/README.md)
 
 # Preparation
 
@@ -29,17 +33,14 @@ stdenv_tools $ docker run -it stdenv_tools bash
 
 # How to push docker image to registry.
 
-1. run push.bat to push image ( IP of our registry is written in stdenv_docker2/setenv.bat )
+1. (preparation) setenv.bat should be modified to point to your private docker registry.
+2. run push.bat to push image to registry
 
-# Error "Get https://54.250.240.42:8000/v2/: http: server gave HTTP response to HTTPS client" while docker push
+# Error "Get https://www.xxx.yyy.zzz:8000/v2/: http: server gave HTTP response to HTTPS client" while docker push
 
-add the following to %USERPROFILE%/.docker/daemon.json
+add host and port to %USERPROFILE%/.docker/daemon.json
 ```json
   "insecure-registries": [
-    "54.250.240.42:8000"
+    "www.xxx.yyy.zzz:8000"
   ],
 ```
-
-# How to run Hadoop in docker ?
-
-[hadoop README.md](hadoop/README.md)
