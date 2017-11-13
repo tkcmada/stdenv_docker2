@@ -7,16 +7,30 @@ ARG RHEL_PASSWORD=${RHEL_PASSWORD}
 
 COPY subscription-enable-repo.sh /root/
 COPY subscription-find-pool.py /root/
+COPY subscription-unregist.sh /root/
 
+RUN echo "BuildNo.001 : This build number is dummy and should be incremented every time you build for disabling docker cache"
 RUN cd /root && sh subscription-enable-repo.sh rhel-7-server-extras-rpms rhel-7-server-optional-rpms
 #subscriptionのキャッシュを有効にするためにこれ以前に追加しないこと
 
 #epelを使用する
 RUN rpm -ivh http://ftp.jaist.ac.jp/pub/Linux/Fedora/epel/7/x86_64/Packages/e/epel-release-7-11.noarch.rpm
 
+#必要なrpmをインストール(or downloadonly)する
 RUN yum install -y \
      git \
-     ansible \
+#     ansible \
  && yum clean all 
+
+
+
+#[cleanup phase]
+#最後にregisterしたsubscriptionを解除する。
+#さもないとsubscriptionの上限に達してしまう。
+#よって下記の行は常に最後に実行すること。
+#また、Dockerfile途中で処理に失敗し、下記の処理が実行されなかったときは、
+#run_bash.shでコンテナに入ってもhostnameが変わってしまうため手動でsubscriptionを解除できない。
+#よってRedHat Customer Portalにログインし、手動でsubscriptionに紐づくシステムを削除すること。
+RUN sh /root/subscription-unregist.sh
 
 CMD ["bash"]
