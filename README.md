@@ -25,22 +25,28 @@ stdenv_docker2
 # How to build and run docker image
 
 ```
-stdenv_tools $ build.bat
-# this build docker container and tag it as "stdenv_tools"
+stdenv_tools $ build.bat  # equivalent to "docker build -t stdenv_tools ."
 
 stdenv_tools $ docker run -it stdenv_tools bash
 ```
 
 # How to push docker image to registry.
 
-1. (preparation) setenv.bat should be modified to point to your private docker registry.
-2. run push.bat to push image to registry
+1. run push.bat
+```
+stdenv_tools $ push.bat
+# push.bat is equivalent to 
+#
+# docker tag stdenv_tools stdenvregistry.ddns.net:8000/stdenv_tools
+# docker push stdenvregistry.ddns.net:8000/stdenv_tools
+#
+```
 
-# Error "Get https://www.xxx.yyy.zzz:8000/v2/: http: server gave HTTP response to HTTPS client" while docker push
+# Error "Get https://stdenvregistry.ddns.net:8000/v2/: http: server gave HTTP response to HTTPS client" while docker push
 
 add host and port to %USERPROFILE%/.docker/daemon.json
 ```json
   "insecure-registries": [
-    "www.xxx.yyy.zzz:8000"
+     "stdenvregistry.ddns.net:8000"
   ],
 ```

@@ -1,1 +1,1 @@
-set DOCKER_REGISTRY=54.250.236.237:8000
+set DOCKER_REGISTRY=stdenvregistry.ddns.net:8000

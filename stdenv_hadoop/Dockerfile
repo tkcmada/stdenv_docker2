@@ -58,6 +58,33 @@ RUN cd /usr \
  && echo "export ZEPPELIN_HOME=/usr/zeppelin" >> /root/.bashrc \
  && echo 'export PATH=$ZEPPELIN_HOME/bin:$PATH' >> /root/.bashrc
 
+#installing scl
+RUN yum install -y \
+     scl-utils \
+     centos-release-scl-rh \
+  && yum clean all
+
+#installing python2.7
+RUN yum install -y \
+     python27 \
+     python27-devel \
+  && yum clean all
+
+#getting hue
+RUN cd /usr \
+ && git clone https://github.com/cloudera/hue.git
+
+#installing hue
+RUN cd /usr/hue \
+ && make apps
+
+#installing httpfs
+RUN yum install -y \
+ && hadoop-httpfs \
+ && yum clean all
+
+#enabling webfs
+
 EXPOSE 8080
 
 CMD ["bash"]

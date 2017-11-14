@@ -9,7 +9,7 @@ COPY subscription-enable-repo.sh /root/
 COPY subscription-find-pool.py /root/
 COPY subscription-unregist.sh /root/
 
-RUN echo "BuildNo.001 : This build number is dummy and should be incremented every time you build for disabling docker cache"
+RUN echo "Please note that --no-cache option is required to let subscription-manager subscribes new subscription every build."
 RUN cd /root && sh subscription-enable-repo.sh rhel-7-server-extras-rpms rhel-7-server-optional-rpms
 #subscriptionのキャッシュを有効にするためにこれ以前に追加しないこと
 

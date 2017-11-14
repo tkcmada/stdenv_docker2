@@ -9,5 +9,5 @@ if "%RHEL_PASSWORD%" == "" (
 )
 echo username=%RHEL_USER%
 echo password=%RHEL_PASSWORD%
-docker build --build-arg RHEL_USER=%RHEL_USER% --build-arg RHEL_PASSWORD=%RHEL_PASSWORD% -t stdenv/%DIRNAME% .
+docker build --no-cache --build-arg RHEL_USER=%RHEL_USER% --build-arg RHEL_PASSWORD=%RHEL_PASSWORD% -t stdenv/%DIRNAME% .
 pause
