@@ -51,6 +51,11 @@ RUN sh /root/download_and_createrepo.sh cloudera-cdh5    cdh5/redhat/7/x86_64/cd
 RUN sh /root/download_and_createrepo.sh cloudera-manager cm5/redhat/7/x86_64/cm/5.13.0
 RUN sh /root/download_and_createrepo.sh cloudera-kudu    kudu/redhat/7/x86_64/kudu/5
 
+RUN mkdir -p cdsw/1/parcels/latest \
+ && wget -P  cdsw/1/parcels/latest https://archive.cloudera.com/cdsw/1/parcels/latest/CDSW-1.2.1.p1.192306-el7.parcel \
+ && wget -P  cdsw/1/parcels/latest https://archive.cloudera.com/cdsw/1/parcels/latest/CDSW-1.2.1.p1.192306-el7.parcel.sha1 \
+ && wget -P  cdsw/1/parcels/latest https://archive.cloudera.com/cdsw/1/parcels/latest/manifest.json
+
 EXPOSE 80
 
 CMD ["python", "-m", "SimpleHTTPServer", "80"]
