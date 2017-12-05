@@ -1,8 +1,10 @@
 #!/bin/sh
 
 name=stdenv_cdhrepo
+host=stdenvregistry.ddns.net:8000
 
-docker build -t $name .
-docker tag $name stdenvregistry:8000/$name
-docker push stdenvregistry:8000/$name
+sudo docker build -t $name .
+sudo docker tag $name $host/$name
+sudo docker push $host/$name
+
 

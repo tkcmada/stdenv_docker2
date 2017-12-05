@@ -6,3 +6,4 @@
 /images/rhel7.4.tar
 stdenv_npmrepo/nohup.out
 stdenv_cdhrepo/nohup.out
+stdenv_npmrepo/nohup.out
