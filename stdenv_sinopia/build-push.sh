@@ -1,6 +1,6 @@
 #!/bin/sh
 
-name=stdenv_cdhrepo
+name=stdenv_sinopia
 host=localhost:8000
 
 sudo docker build -t $name .

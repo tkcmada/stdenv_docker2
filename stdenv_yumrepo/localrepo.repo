@@ -1,0 +1,5 @@
+[localrepo]
+name=localrepo
+baseurl=file:///opt/repo
+gpgcheck=0
+enabled=1
