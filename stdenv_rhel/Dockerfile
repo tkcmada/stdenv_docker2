@@ -18,11 +18,12 @@ RUN rpm -ivh http://ftp.jaist.ac.jp/pub/Linux/Fedora/epel/7/x86_64/Packages/e/ep
 
 #必要なrpmをインストール(or downloadonly)する
 RUN yum install -y \
-     git \
-#     ansible \
+     createrepo \
  && yum clean all 
 
+COPY download_and_createrepo.sh /root/
 
+RUN yum repolist
 
 #[cleanup phase]
 #最後にregisterしたsubscriptionを解除する。

@@ -34,27 +34,23 @@ RUN mkdir -p accumulo-c5/parcels/latest \
  && wget -P  accumulo-c5/parcels/latest https://archive.cloudera.com/accumulo-c5/parcels/latest/manifest.json
 
 COPY download_and_createrepo.sh /root/download_and_createrepo.sh
-      
-#      ,"echo downloading cloudera manager"
-#      ,"sudo yum install --downloadonly --downloaddir=/opt/repo oracle-j2sdk1.7"
-#      ,"sudo yum install --downloadonly --downloaddir=/opt/repo cloudera-manager-daemons cloudera-manager-server cloudera-manager-server-db-2 cloudera-manager-agent"
 
 #downloading cloudera repo
 RUN yum install -y createrepo \
  && yum clean all
 
-COPY cloudera-cdh5.repo    /etc/yum.repos.d/
-COPY cloudera-kudu.repo    /etc/yum.repos.d/
-COPY cloudera-manager.repo /etc/yum.repos.d/
+#COPY cloudera-cdh5.repo    /etc/yum.repos.d/
+#COPY cloudera-kudu.repo    /etc/yum.repos.d/
+#COPY cloudera-manager.repo /etc/yum.repos.d/
 
-RUN sh /root/download_and_createrepo.sh cloudera-cdh5    cdh5/redhat/7/x86_64/cdh/5
-RUN sh /root/download_and_createrepo.sh cloudera-manager cm5/redhat/7/x86_64/cm/5.13.0
-RUN sh /root/download_and_createrepo.sh cloudera-kudu    kudu/redhat/7/x86_64/kudu/5
+#RUN sh /root/download_and_createrepo.sh cloudera-cdh5    cdh5/redhat/7/x86_64/cdh/5
+#RUN sh /root/download_and_createrepo.sh cloudera-manager cm5/redhat/7/x86_64/cm/5.13.0
+#RUN sh /root/download_and_createrepo.sh cloudera-kudu    kudu/redhat/7/x86_64/kudu/5
 
-RUN mkdir -p cdsw/1/parcels/latest \
- && wget -P  cdsw/1/parcels/latest https://archive.cloudera.com/cdsw/1/parcels/latest/CDSW-1.2.1.p1.192306-el7.parcel \
- && wget -P  cdsw/1/parcels/latest https://archive.cloudera.com/cdsw/1/parcels/latest/CDSW-1.2.1.p1.192306-el7.parcel.sha1 \
- && wget -P  cdsw/1/parcels/latest https://archive.cloudera.com/cdsw/1/parcels/latest/manifest.json
+RUN mkdir -p cdsw/1/parcels/latest
+RUN wget -P  cdsw/1/parcels/latest https://archive.cloudera.com/cdsw/1/parcels/latest/CDSW-1.2.1.p1.192306-el7.parcel.sha1
+RUN wget -P  cdsw/1/parcels/latest https://archive.cloudera.com/cdsw/1/parcels/latest/manifest.json
+#RUN wget -P  cdsw/1/parcels/latest https://archive.cloudera.com/cdsw/1/parcels/latest/CDSW-1.2.1.p1.192306-el7.parcel
 
 EXPOSE 80
 
