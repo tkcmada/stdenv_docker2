@@ -13,3 +13,5 @@ RUN npm set registry http://127.0.0.1:5080 \
 
 EXPOSE 5080
 
+CMD ["local-npm"]
+

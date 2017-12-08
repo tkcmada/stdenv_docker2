@@ -25,7 +25,7 @@ RUN yum install --downloadonly --downloaddir=/opt/repo mysql-server mysql-commun
 
 RUN yum install --downloadonly --downloaddir=/opt/repo oracle-j2sdk1.7 cloudera-manager-daemons cloudera-manager-server cloudera-manager-agent  cloudera-manager-server-db-2
 RUN yum install --downloadonly --downloaddir=/opt/repo chrony
-RUN yum install --downloadonly --downloaddir=/opt/repo nodejs npm
+RUN yum install --downloadonly --downloaddir=/opt/repo nodejs npm yum gcc gcc-c++
 RUN yum install --downloadonly --downloaddir=/opt/repo nginx
 RUN yum install --downloadonly --downloaddir=/opt/repo net-tools
 RUN yum install --downloadonly --downloaddir=/opt/repo git
