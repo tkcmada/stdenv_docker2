@@ -15,7 +15,7 @@ COPY cloudera-kudu.repo /etc/yum.repos.d/
 COPY cloudera-manager.repo /etc/yum.repos.d/
 COPY nginx.repo            /etc/yum.repos.d/
 
-RUN yum install -y createrepo epel-release yum-plugin-downloadonly
+RUN yum install -y createrepo epel-release yum-plugin-downloadonly yum-utils
 RUN yum update -y openssl
 RUN mkdir -p /opt/repo
 
@@ -25,7 +25,8 @@ RUN yum install --downloadonly --downloaddir=/opt/repo mysql-server mysql-commun
 
 RUN yum install --downloadonly --downloaddir=/opt/repo oracle-j2sdk1.7 cloudera-manager-daemons cloudera-manager-server cloudera-manager-agent  cloudera-manager-server-db-2
 RUN yum install --downloadonly --downloaddir=/opt/repo chrony
-RUN yum install --downloadonly --downloaddir=/opt/repo nodejs npm yum gcc gcc-c++
+RUN yum install --downloadonly --downloaddir=/opt/repo gcc gcc-c++
+RUN yum install --downloadonly --downloaddir=/opt/repo nodejs npm 
 RUN yum install --downloadonly --downloaddir=/opt/repo nginx
 RUN yum install --downloadonly --downloaddir=/opt/repo net-tools
 RUN yum install --downloadonly --downloaddir=/opt/repo git
@@ -57,17 +58,12 @@ RUN yum install --downloadonly --downloaddir=/opt/repo impala impala-server impa
 RUN yum install --downloadonly --downloaddir=/opt/repo kudu kudu-master kudu-tserver kudu-client0 kudu-client-devel
 RUN yum install --downloadonly --downloaddir=/opt/repo postgresql postgresql-libs postgresql-server
 
+RUN yum install --downloadonly --downloaddir=/opt/repo nfs-utils
+
 #sh download_and_createrepo.sh cloudera-cdh5    /var/html/www/cdh5/redhat/7/x86_64/cdh/5
 #sh download_and_createrepo.sh cloudera-manager /var/html/www/cm5/redhat/7/x86_64/cm/5.13.0
 #sh download_and_createrepo.sh cloudera-kudu    /var/html/www/kudu/redhat/7/x86_64/kudu/5
      
-#echo create repo
-#sudo createrepo /opt/repo
-#sudo mv localrepo.repo /etc/yum.repos.d/
-
-#cd ~ && chmod +x repo-switch-internet.sh repo-switch-local.sh
-#./repo-switch-local.sh
-
 EXPOSE 80
 
 CMD ["python", "-m", "SimpleHTTPServer", "80"]
