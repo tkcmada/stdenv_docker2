@@ -6,7 +6,7 @@
 reponame=$1
 repodir=$2
 
-if "$repodir" = ""
+if [ "$repodir" = "" ]
 then
   repodir=.
 fi
@@ -15,6 +15,7 @@ test "$repodir" = "" && exit 1
 test "$reponame" = "" && exit 1
 
 cd ~ || exit 1
+yum-config-manager --enablerepo=$reponame
 reposync -r $reponame || exit 1
 mkdir -p $repodir || exit 1
 find $reponame -name '*.rpm' | xargs mv -t $repodir/ || exit 1

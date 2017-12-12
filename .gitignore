@@ -9,3 +9,4 @@ stdenv_cdhrepo/nohup.out
 stdenv_npmrepo/nohup.out
 stdenv_tools/nohup.out
 stdenv_yumrepo/nohup.out
+stdenv_rhel7_repo/nohup.out
