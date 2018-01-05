@@ -9,10 +9,9 @@ function p2()
   sudo docker tag $pullname $pushname || exit 1
   sudo docker push $pushname || exit 1
 }
-
-p2 gcr.io/google_containers/k8s-dns-kube-dns-amd64:1.14.1
-p2 gcr.io/google_containers/k8s-dns-dnsmasq-nanny-amd64:1.14.1
-p2 gcr.io/google_containers/k8s-dns-sidecar-amd64:1.14.1
+p2 gcr.io/google_containers/k8s-dns-kube-dns-amd64:1.14.5
+p2 gcr.io/google_containers/k8s-dns-dnsmasq-nanny-amd64:1.14.5
+p2 gcr.io/google_containers/k8s-dns-sidecar-amd64:1.14.5
 p2 quay.io/coreos/flannel:v0.7.1-amd64
 p2 gcr.io/kubernetes-helm/tiller:v2.3.0
 p2 gcr.io/google-containers/kube-addon-manager:v6.1
